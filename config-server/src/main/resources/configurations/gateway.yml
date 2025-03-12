@@ -1,0 +1,31 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: users-service
+          uri: http://localhost:8081
+          #uri: lb://users-service
+          predicates:
+            - Path=/user/**
+        - id: accounts-service
+          uri: http://localhost:8082
+          #uri: lb://accounts-service
+          predicates:
+            - Path=/account/**
+
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false
+    fetch-registry: false
+    serverUrl:
+      defaultZone: http://localhost:8761/eureka/

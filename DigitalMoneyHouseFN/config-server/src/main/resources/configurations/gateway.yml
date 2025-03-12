@@ -1,0 +1,25 @@
+server:
+  port: 8084
+
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: users-service
+          uri: http://users-service:8081
+          #uri: lb://users-service
+          predicates:
+            - Path=/user/**
+        - id: accounts-service
+          uri: http://accounts-service:8082
+          #uri: lb://accounts-service
+          predicates:
+            - Path=/account/**
+eureka:
+  client:
+    register-with-eureka: false
