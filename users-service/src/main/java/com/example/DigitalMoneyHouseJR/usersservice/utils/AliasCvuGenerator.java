@@ -1,6 +1,7 @@
 package com.example.DigitalMoneyHouseJR.usersservice.utils;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 
@@ -18,7 +19,7 @@ import java.util.Scanner;
     @Component
     public class AliasCvuGenerator {
 private final Random random = new Random();
-        private static final Logger logger = Logger.getLogger(AliasCvuGenerator.class.getName());
+        private static final Logger logger = LogManager.getLogger(AliasCvuGenerator.class);
 
         public String generateAlias() {
             List<String> aliasOptions = new ArrayList<>();
